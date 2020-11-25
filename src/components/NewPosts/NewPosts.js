@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const NewPosts = ({ newses }) => {
+  const [numberOfPosts, setNumberOfPosts] = useState(6);
+
+  const displayMorePostsHandler = () => {
+    setNumberOfPosts(prevNumberOfPosts => numberOfPosts + 3);
+  };
+
   return (
     <>
       <SectionNewPosts>
         <Ul>
-          {newses.map(({ id, title, body }) => {
+          {newses.slice(0, numberOfPosts).map(({ id, title, body }) => {
             return (
               <li key={id}>
                 <div className='body'>
@@ -21,7 +27,7 @@ const NewPosts = ({ newses }) => {
             );
           })}
         </Ul>
-        <PagerButton>Pager</PagerButton>
+        <PagerButton onClick={displayMorePostsHandler}>Pager</PagerButton>
       </SectionNewPosts>
     </>
   );
@@ -72,8 +78,15 @@ const Ul = styled.ul`
     & button {
       color: #fff;
       cursor: pointer;
-      background-color: #f44336;
+      background: #f44336;
       padding: 5px;
+      transition-duration: 0.2s;
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 0.5em 0.5em -0.4em #000;
+        transform: translateY(-0.25em);
+      }
 
       &:nth-child(2) {
         background: #008cba;

@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
-import styled from 'styled-components';
 import { NewsContext } from '../../hoc/Context/Context';
-import Post from '../../components/Post/Post';
+import NewPosts from '../../components/NewPosts/NewPosts';
 
 const Posts = () => {
   const [newses, setNewses] = useContext(NewsContext);
 
   return (
     <>
-      <Post newses={newses} />
+      <NewPosts newses={newses} />
     </>
   );
 };

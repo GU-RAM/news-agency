@@ -1,13 +1,39 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { NewsContext } from '../../hoc/Context/Context';
+import React, { useState, useEffect, createContext } from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
+import axios from 'axios';
 import NewPosts from '../../components/NewPosts/NewPosts';
+import SinglePost from '../../components/NewPosts/PostsList/SinglePost/SinglePost';
+
+export const newsContext = createContext();
 
 const Posts = () => {
-  const [newses, setNewses] = useContext(NewsContext);
+  // const [newses, setNewses] = useState([]);
+
+  // const getPosts = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       'https://jsonplaceholder.typicode.com/posts'
+  //     );
+  //     return data;
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getPosts().then(data => {
+  //     setNewses(data);
+  //   });
+  // }, []);
 
   return (
     <>
-      <NewPosts newses={newses} />
+      {/* <newsContext.Provider value={newses}> */}
+      <Switch>
+        <Route path='/posts/:id' component={SinglePost} />
+        <Route path='/' component={NewPosts} />
+      </Switch>
+      {/* </newsContext.Provider> */}
     </>
   );
 };

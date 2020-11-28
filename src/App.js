@@ -1,13 +1,12 @@
-import './App.css';
 import Posts from './containers/Posts/Posts';
-import { NewsContextProvider } from './hoc/Context/Context';
+import { SharedContextComponent } from './hoc/Context/Context';
 
 function App() {
   return (
-    <div className='App'>
-      <NewsContextProvider>
+    <div>
+      <SharedContextComponent>
         <Posts />
-      </NewsContextProvider>
+      </SharedContextComponent>
     </div>
   );
 }

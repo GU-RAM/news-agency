@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import NewPosts from '../../components/NewPosts/NewPosts';
 import SinglePost from '../../components/NewPosts/PostsList/SinglePost/SinglePost';

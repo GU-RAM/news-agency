@@ -27,7 +27,6 @@ const SectionNewPosts = styled.section`
   border: 2px solid #000;
   padding: 50px;
   margin: 10px;
-  width: 70%;
 `;
 
 const PagerButton = styled.button`

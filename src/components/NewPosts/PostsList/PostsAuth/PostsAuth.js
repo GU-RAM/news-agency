@@ -6,7 +6,7 @@ const PostsAuth = ({ users, userId }) => {
       {users
         .filter(user => user.id === userId)
         .map(users => {
-          return <span>{users.name}</span>;
+          return <span key={users.id}>{users.name}</span>;
         })}
     </>
   );

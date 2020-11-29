@@ -1,13 +1,46 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { SharedContext } from '../../hoc/Context/Context';
 
+const postCountByUserId = {};
+let max = 0;
+let topUser = '';
+
 const ActiveUser = () => {
   const { newses, users } = useContext(SharedContext);
+  const [activeUser, setActiveUSer] = useState({
+    name: '',
+    email: '',
+    numberOfPosts: '',
+  });
+
+  useEffect(() => {
+    for (const post of newses) {
+      if (postCountByUserId.hasOwnProperty(post.userId)) {
+        postCountByUserId[post.userId] += 1;
+      } else {
+        postCountByUserId[post.userId] = 1;
+      }
+      if (postCountByUserId[post.userId] >= max) {
+        max = postCountByUserId[post.userId];
+        topUser = post.userId;
+      }
+    }
+
+    const person = users.find(user => user.id === topUser);
+    person &&
+      setActiveUSer({
+        name: person.name,
+        email: person.email,
+        numberOfPosts: max,
+      });
+  }, [users]);
 
   return (
     <TopUserWrapper>
-      <div>gur</div>
+      <div>Name: {activeUser.name}</div>
+      <div>Email: {activeUser.email}</div>
+      <div>Number of post: {activeUser.numberOfPosts}</div>
       <h1>Top Users With The Most Posts</h1>
     </TopUserWrapper>
   );
